@@ -1,0 +1,41 @@
+{% extends "vikinglab.html" %}
+{% load i18n vf_tags mainvisual static %}
+
+{% block extra_css %}
+    {{ block.super }}
+    {% blocks_css_vikingco "mainvisual" %}
+
+
+{% endblock %}
+{% block nav-lab %}active{% endblock %}
+{% block extra_js %}
+    {{ block.super }}
+    {% blocks_js "mainvisual" %}
+{% endblock %}
+
+{% block page-title %}{% trans "Becoming a Viking Pioneer" %} &mdash; {{ block.super }}{% endblock %}
+
+{% block inner-content %}
+    <div class="row">
+        <div class="grid-100">
+            <div class="grid-100 text-center">
+                <h2>Hi!{{ name }} What is Viking Pioneer?</h2>
+                <p>Since 2015, we use a living Mobile Vikings Lab that as of today has more than 26 000 users (so called
+                    “Mobile Viking Pioneers”). The Vikings Lab’s purpose is not only to test our own ideas and
+                    innovative projects, but also to let you as customer experiment with new ideas and poste them on the
+                    forum. We strongly believe the active community of Viking Pioneers is ideally positioned to test
+                    start-ups’ prototypes and at the same time provide them with insightful feedback that will take
+                    their project to the next level.
+                    We kindly ask you to fill out the questions below. This information will enable us to tailor our
+                    offerings to your specific needs and interests.</p>
+                <h3>The benefits of becoming a Viking Pioneers are...</h3>
+                <iframe width="620" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+                <h2>Interested in becoming a pioneer?<br>
+                    Are you a Viking already?</h2>
+                <a href="/form?viking=true" class="button button-red">{% trans "Yes!" %}</a>
+                <a href="/form?viking=false" class="button button-red">{% trans "No." %}</a>
+            </div>
+        </div>
+    </div>
+    <div class="double-spacer"></div>
+{% endblock %}

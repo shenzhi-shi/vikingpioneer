@@ -1,0 +1,201 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+{% extends "vikinglab.html" %}
+
+{% load i18n vf_tags mainvisual static %}
+
+{% block extra_css %}
+    {{ block.super }}
+    {% blocks_css_vikingco "mainvisual" %}
+
+
+    <style>
+        .formbk {
+            background-color: white;
+            position: relative;
+            top: 20px;
+            left: 40px;
+            width: 1000px;
+            padding-left: 100px;
+            padding-right: 100px;
+            padding-top: 1px;
+            padding-bottom: 100px;
+        }
+
+        .message {
+            background-color: lightgreen;
+            position: relative;
+            top: 20px;
+            left: 40px;
+            width: 1000px;
+            padding: 50px;
+
+        }
+
+        .error {
+            background-color: lightcoral;
+            position: relative;
+            top: 20px;
+            left: 40px;
+            width: 1000px;
+            padding: 50px;
+        }
+
+        .mycheckbox input[type="checkbox"] {
+            display: none;
+        }
+
+        .mycheckbox input[type="checkbox"] + label {
+            background: whitesmoke;
+            width: 100px;
+            height: 50px;
+            border-radius: 20px;
+            padding: 10px
+        }
+
+        .mycheckbox input[type="checkbox"]:checked + label {
+            background: indianred;
+            width: 100px;
+            height: 50px;
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+
+    </style>
+
+{% endblock %}
+{% block nav-lab %}active{% endblock %}
+{% block extra_js %}
+    {{ block.super }}
+    {% blocks_js "mainvisual" %}
+{% endblock %}
+
+{% block page-title %}{% trans "Form" %} &mdash; {{ block.super }}{% endblock %}
+
+{% block inner-content %}
+
+
+
+
+    <body>
+    <h1>{{ name }}{{ message }}</h1>
+    <h1>{{ errors }}</h1>
+
+
+    <h3 style="position:relative;top:50px;color:darkred">One Step away from becoming a Viking Pioneer!</h3>
+    <form method="post">
+        <div class="formbk">
+            {% if isViking == 'false' %}
+                <h3>Basic Information</h3>
+            {% endif %}
+            {% if isViking == 'true' %}
+                <h3>Please Enter Your Viking Account Email:</h3>
+            {% endif %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>First Name</label>
+                    {% csrf_token %}
+                    {{ someone_form.firstname }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Last Name</label>
+                    {% csrf_token %}
+                    {{ someone_form.lastname }}
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <label>Email</label>
+                {% csrf_token %}
+                {{ someone_form.email }}
+            </div>
+
+            {% if isViking == 'false' %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Password</label>
+                        {% csrf_token %}
+                        {{ someone_form.password }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Repeat Password</label>
+                        {% csrf_token %}
+                        {{ someone_form.password }}
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Address</label>
+                    {% csrf_token %}
+                    {{ someone_form.address }}
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label>City</label>
+                        {% csrf_token %}
+                        {{ someone_form.city }}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Country</label>
+                        {% csrf_token %}
+                        {{ someone_form.country }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Zip</label>
+                        {% csrf_token %}
+                        {{ someone_form.zip }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Date of Birth</label>
+                        {% csrf_token %}
+                        {{ someone_form.birthdate }}
+                        <small id="passwordHelpInline" class="text-muted">
+                            dd/mm/yy
+                        </small>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Place of Birth</label>{% csrf_token %}
+                        {{ someone_form.birthplace }}
+                    </div>
+                </div>
+            {% endif %}
+
+
+                <h3>What kinds of device do you use?</h3>
+                <label> Smartphone</label>
+                {% csrf_token %}
+                {{ someone_form.smartphone}}
+                <label> Laptop</label>
+                {% csrf_token %}
+                {{ someone_form.laptop }}
+                <label> Tablet</label>
+                {% csrf_token %}
+                {{ someone_form.tablet }}
+
+<!--
+                <div class="mycheckbox">
+                    <input type="checkbox" name="smartphone" id="smartphone"/>
+                    <label for="smartphone">Smartphone</label>
+                </div>
+-->
+
+            <h3>What are you interested in?</h3>
+            <label> Health</label>
+            {% csrf_token %}
+            {{ someone_form.Health }}
+            <label>Travel</label>
+            {% csrf_token %}
+            {{ someone_form.Travel }}
+            <br><br><br>
+            <button type="submit" class="button button-red">Submit</button>
+
+
+            </form>
+        </div>
+    <div class="double-spacer"></div>
+    </body>
+    </html>
+
+{% endblock %}
